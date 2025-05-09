@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Checkout Summary</title>
+    <style>
+      /* Global Styles */
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #fdf3e3;
+        text-align: center;
+        padding: 40px;
+        color: #333;
+      }
+
+      h1,
+      h2 {
+        color: #5c85d6;
+        font-weight: 600;
+      }
+
+      .container {
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      table {
+        width: 100%;
+        margin: 30px 0;
+        border-collapse: collapse;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      th,
+      td {
+        padding: 15px;
+        border: 1px solid #ddd;
+        text-align: center;
+        font-size: 16px;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      .summary-section {
+        margin-top: 20px;
+        text-align: left;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .summary-section p {
+        margin: 10px 0;
+        font-size: 16px;
+      }
+
+      .left-align {
+        text-align: left;
+        margin-left: 0;
+      }
+
+      /* Customer Input Section */
+      .input-section {
+        margin-top: 40px;
+        background-color: #fff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .input-section input {
+        width: 100%;
+        padding: 14px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+      }
+
+      .input-section label {
+        display: block;
+        margin-bottom: 10px;
+        text-align: left;
+        font-weight: 600;
+        color: #5c85d6;
+      }
+
+      .input-section input[type="text"],
+      .input-section input[type="tel"] {
+        background-color: #f9f9f9;
+      }
+
+      .input-section input:focus {
+        outline: none;
+        border-color: #5c85d6;
+        box-shadow: 0 0 10px rgba(92, 133, 214, 0.5);
+      }
+
+      .input-section input[type="submit"] {
+        background-color: #5c85d6;
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+      }
+
+      .input-section input[type="submit"]:hover {
+        background-color: #466bb4;
+      }
+
+      /* Button Styles */
+      .place-another {
+        margin-top: 40px;
+      }
+
+      .place-another input {
+        background-color: #f5a623;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .place-another input:hover {
+        background-color: #d78500;
+        transform: scale(1.05);
+      }
+
+      /* Animation */
+      .input-section input:focus {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(92, 133, 214, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Checkout Summary</h1>
+
+      <h2 class="left-align">Order Details</h2>
+      <table>
+        <tr>
+          <th>Product</th>
+          <th>Price (₱)</th>
+          <th>Quantity</th>
+          <th>Total (₱)</th>
+        </tr>
+        <tr>
+          <td>Chocolate Donut</td>
+          <td>₱3.50</td>
+          <td>1</td>
+          <td>₱3.50</td>
+        </tr>
+        <tr>
+          <td>Strawberry Tart</td>
+          <td>₱4.00</td>
+          <td>1</td>
+          <td>₱4.00</td>
+        </tr>
+        <tr>
+          <td>Blueberry Muffin</td>
+          <td>₱2.75</td>
+          <td>1</td>
+          <td>₱2.75</td>
+        </tr>
+        <tr>
+          <td>Vanilla Macaron</td>
+          <td>₱1.80</td>
+          <td>1</td>
+          <td>₱1.80</td>
+        </tr>
+      </table>
+
+      <h2 class="left-align">Price Calculation</h2>
+      <div class="summary-section">
+        <p><strong>Total Price:</strong> ₱12.05</p>
+        <p><strong>Discount (5%):</strong> ₱0.60</p>
+        <p><strong>Final Price:</strong> ₱11.45</p>
+      </div>
+
+      <!-- Customer Information Input Fields Section -->
+      <h2 class="left-align">Customer Information</h2>
+      <div class="input-section">
+        <form action="submit_order.php" method="POST">
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder="Enter your full name"
+          />
+
+          <label for="address">Address:</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            required
+            placeholder="Enter your delivery address"
+          />
+
+          <label for="cellphone">Cellphone Number:</label>
+          <input
+            type="tel"
+            id="cellphone"
+            name="cellphone"
+            required
+            pattern="(\+?\d{1,4}[\s\-]?)?(\(?\d{2,3}\)?[\s\-]?)?[\d\s\-]{7,10}"
+            title="Please enter a valid phone number"
+            placeholder="Enter your cellphone number"
+          />
+
+          <label for="socialmedia">Social Media Account (Optional):</label>
+          <input
+            type="text"
+            id="socialmedia"
+            name="socialmedia"
+            placeholder="Enter your social media account"
+          />
+
+          <input type="submit" value="Submit Order" />
+        </form>
+      </div>
+    </div>
+
+    <div class="place-another">
+      <a href="index.html">
+        <input type="button" value="Place another Order" />
+      </a>
+    </div>
+  </body>
+</html>

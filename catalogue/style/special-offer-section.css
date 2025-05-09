@@ -1,0 +1,165 @@
+/* ==================== Special Offer Card ==================== */
+.special-offer-section {
+  display: flex;
+  background: linear-gradient(to right, #fff8f4, #fff3ec);
+  padding: 20px;
+  margin-top: 100px;
+  margin-bottom: 25px;
+  position: relative;
+  overflow: hidden;
+  height: 400px;
+  border-radius: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.08),
+    0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.special-offer-section:hover {
+  transform: scale(1.01);
+  transition: transform 0.3s ease;
+}
+
+.special-offer-image {
+  flex: 1;
+  background-image: url("../../images/tart.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 300px;
+  transition: opacity 0.5s ease;
+  border-radius: 16px;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.special-offer-info {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.special-offer-info h3 {
+  font-size: 42px;
+  color: #2c2c2c;
+  margin-bottom: 10px;
+}
+
+.special-offer-info p {
+  font-size: 15px;
+  color: #555;
+}
+
+.price-action {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.product-price {
+  font-size: 18px;
+  color: #d3633c;
+  font-weight: bold;
+}
+
+.add-btn {
+  padding: 10px 24px;
+  background-color: #6a2314;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(106, 35, 20, 0.3); /* soft shadow using same tone */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.add-btn:hover {
+  background-color: #50180e; /* slightly darker version */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(106, 35, 20, 0.35);
+}
+
+.add-btn::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  opacity: 0;
+  transition: transform 0.4s ease-out, opacity 0.8s ease-out;
+}
+
+.add-btn:active::after {
+  transform: translate(-50%, -50%) scale(2.5);
+  opacity: 1;
+  transition: 0s;
+}
+
+.add-btn i {
+  margin-right: 8px;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.add-btn span {
+  vertical-align: middle;
+}
+
+.offer-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #ff6a4f;
+  padding: 6px 16px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.4px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+  transition: background-color 0.3s ease;
+}
+
+.offer-badge i {
+  margin-right: 6px;
+}
+
+.special-offer-image:hover {
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .special-offer-section {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .special-offer-image,
+  .special-offer-info {
+    border-radius: 0;
+  }
+
+  .special-offer-image {
+    height: 200px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  .special-offer-info {
+    padding: 20px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+  }
+}

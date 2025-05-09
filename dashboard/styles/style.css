@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* General Styles */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #fff8f0;
+  color: #5a2d0c;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Header */
+h1 {
+  font-size: 2.2rem;
+  color: #8b4513;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Stats Section */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  margin: 2.5rem 0;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background-color: #fef6f2;
+  padding: 1.8rem 2rem;
+  border-radius: 20px;
+  border: 2px solid #e6b8a2;
+  text-align: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.07);
+  flex: 1;
+  min-width: 200px;
+  max-width: 250px;
+  transition: all 0.25s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.icon-wrapper {
+  background: #fff3ea;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 0.7rem;
+  box-shadow: inset 0 0 0 2px #e0a475;
+}
+
+.stat-card h2 {
+  font-size: 1.8rem;
+  margin: 0.3rem 0;
+  color: #1f1f1f;
+  font-weight: 600;
+}
+
+.stat-card p {
+  font-size: 1rem;
+  color: #5a2d0c;
+}
+
+/* Chart Section */
+.chart-section {
+  background: #ffffff;
+  border: 2px solid #fcd5ce;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Chart Header */
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.chart-header h3 {
+  margin: 0;
+  color: #a0522d;
+  font-size: 1.3rem;
+}
+
+/* Date Picker */
+input[type="date"] {
+  padding: 8px 12px;
+  border: 1.5px solid #d2691e;
+  border-radius: 8px;
+  font-family: inherit;
+  background: #fff8f0;
+  color: #5a2d0c;
+  cursor: pointer;
+  transition: border 0.2s ease;
+}
+
+input[type="date"]:hover,
+input[type="date"]:focus {
+  border-color: #8b4513;
+  outline: none;
+}
+
+/* Chart Box */
+.chart-box {
+  width: 100%;
+  height: 400px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .stats {
+    justify-content: center;
+  }
+
+  .stat-card {
+    max-width: 45%;
+    flex: 0 0 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  .chart-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  input[type="date"] {
+    width: 100%;
+  }
+
+  .stat-card {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-container {
+    padding: 20px 15px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .stat-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .stat-card p {
+    font-size: 0.9rem;
+  }
+
+  .chart-box {
+    height: 300px;
+  }
+}

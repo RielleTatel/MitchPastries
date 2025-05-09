@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <title>Loading | Mitch’s Pastries</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #fff8f0;
+        font-family: "Poppins", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .loader-container {
+        text-align: center;
+      }
+
+      .loader-icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 20px;
+        animation: spin 1.5s ease-in-out infinite;
+        transform-origin: center;
+      }
+
+      .loading-text {
+        font-size: 1.2rem;
+        color: #8b4513;
+        animation: pulseText 1.3s ease-in-out infinite alternate;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0.4;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes pulseText {
+        0% {
+          opacity: 0.4;
+          transform: scale(0.98);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+      }
+      .progress-bar {
+        width: 200px;
+        height: 6px;
+        background: #fff;
+        border-radius: 3px;
+        margin-top: 15px;
+        overflow: hidden;
+      }
+      .progress {
+        width: 0%;
+        height: 100%;
+        background: #d2691e;
+        animation: fillProgress 1.8s forwards;
+      }
+      @keyframes fillProgress {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader-container">
+      <!-- SVG Whisk (you can swap with a rolling pin or pastry icon) -->
+      <svg class="loader-icon" viewBox="0 0 64 64" fill="none">
+        <path
+          d="M32 2C34 16 44 26 44 32C44 38 34 48 32 62"
+          stroke="#a0522d"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+        <path
+          d="M32 2C30 16 20 26 20 32C20 38 30 48 32 62"
+          stroke="#d2691e"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+      </svg>
+
+      <div class="loading-text">Baking something sweet for you...</div>
+    </div>
+    <div class="progress-bar">
+      <div class="progress"></div>
+    </div>
+
+    <script>
+      const target = new URLSearchParams(window.location.search).get("target");
+      if (target) {
+        setTimeout(() => {
+          window.location.href = target;
+        }, 1800); // Customize delay as needed
+      }
+    </script>
+    <script>
+      const sparkles = document.querySelectorAll(".sparkle");
+      sparkles.forEach((s) => {
+        s.style.setProperty("--rand-x", Math.random().toFixed(2));
+        s.style.setProperty("--rand-delay", (Math.random() * 5).toFixed(2));
+      });
+    </script>
+  </body>
+</html>
