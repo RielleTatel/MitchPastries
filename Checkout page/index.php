@@ -185,7 +185,7 @@
                 });
                 
                 const result = await response.json();
-                console.log('Server response:', result); 
+                console.log('Server response:', result); // Debug log
                 
                 if (result.success === true) { // Explicitly check for true
                     // Show success modal
@@ -343,64 +343,3 @@
     </script>
 </body>
 </html>
-
-
-<!-- 
-
-🛒 1. Fetching Cart Items (fetch_cart.php)
-
-Where it's used: Inside the updateCartDisplay() function.
-
-What it does: When the page loads or every 5 seconds (using setInterval), the script sends a GET request to fetch_cart.php.
-
-Purpose: The PHP script responds with a list of cart items in JSON format.
-
-Result: JavaScript reads the JSON and dynamically updates the cart table on the page.
-
-⮕ Think of this like JavaScript asking, "What's in the cart?" and PHP replying with the full list.
-
---> 
-
-<!-- 
-
-✏️ 2. Updating Item Quantity (update_cart.php)
-Where it's used: Inside the updateQuantity() function, triggered when the quantity input changes.
-
-What it does: Sends a POST request to update_cart.php with the product's ID and the new quantity.
-
-Purpose: PHP receives this data and updates the quantity in the server-side cart (usually session or database).
-
-Result: After updating, the cart display is refreshed by calling updateCartDisplay() again.
-
-⮕ This is like changing your mind on how many burgers you want — JavaScript tells the server to update the count.
-
---> 
-
-<!-- 
-
-❌ 3. Removing an Item (remove_from_cart.php)
-Where it's used: Inside the removeItem() function, triggered by the “Remove” button.
-
-What it does: Sends a POST request to remove_from_cart.php with the product ID.
-
-Purpose: PHP deletes that item from the cart on the server.
-
-Result: JavaScript then refreshes the cart by calling updateCartDisplay() again.
-
-⮕ Similar to telling the waiter to cancel one item — JavaScript tells PHP to remove it.
-
-  -->
-
-<!-- 
-
-📦 4. Submitting an Order (submit_order.php)
-Where it's used: Inside the order-form submission event listener.
-
-What it does: Sends all form data (name, address, phone, etc.) using FormData to submit_order.php via a POST request.
-
-Purpose: PHP likely saves this order into a database and clears the cart.
-
-Result: If successful, a success modal pops up on the page with a thank-you message.
-
-⮕ This is like handing the cashier your completed order. PHP processes it and confirms it went through.
-  --> 
