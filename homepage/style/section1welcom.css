@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;600&display=swap");
 
 .hero {
-  background: url("../../images/pastry.jpg") center/cover no-repeat;
+  background: url("../../../images/pastry.jpg") center/cover no-repeat;
   height: 100vh;
   position: relative;
   display: flex;

@@ -6,11 +6,11 @@
     <title>Mitch Pasties HomePage</title>
 
     <!-- External Stylesheets -->
-    <link rel="stylesheet" href="style/section1navbar.css" />
-    <link rel="stylesheet" href="style/section1welcom.css" />
-    <link rel="stylesheet" href="style/section2.css" />
-    <link rel="stylesheet" href="style/section3.css" />
-    <link rel="stylesheet" href="style/footer.css" />
+    <link rel="stylesheet" href="./ClientSide/Client_homepage/style/section1navbar.css" />
+    <link rel="stylesheet" href="./ClientSide/Client_homepage/style/section1welcom.css" />
+    <link rel="stylesheet" href="./ClientSide/Client_homepage/style/section2.css" />
+    <link rel="stylesheet" href="./ClientSide/Client_homepage/style/section3.css" />
+    <link rel="stylesheet" href="./ClientSide/Client_homepage/style/footer.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -138,16 +138,12 @@
         <div class="nav-section">
           <p class="section-title">MAIN</p>
           <a href="../homepage/index.html" class="active">Home</a>
-          <a href="../loading/index.html?target=../catalogue/index.php"
-            >Catalogue</a
-          >
+          <a href="../loading/index.html?target=../catalogue/index.php">Catalogue</a>
           <a href="../Checkout page/index.php">Cart</a>
         </div>
-        <div class="nav-section">
-          <p class="section-title">ADMIN PANEL</p>
-          <a href="../dashboard/index.html">Dashboard</a>
-          <a href="../menu/menu.html">Menu List</a>
-          <a href="../SeeCustomerOrders/index.html">Orders</a>
+        <div class="auth-section">
+          <a href="../../authorization/index.php" class="auth-btn login-btn">Login</a>
+          <a href="../../authorization/index.php?action=signup" class="auth-btn signup-btn">Sign Up</a>
         </div>
       </div>
     </section>
@@ -176,9 +172,9 @@
         <div class="box" style="animation-delay: 0s">
           <div
             class="product-card"
-            onclick="updateProductDetails('Banana Pudding', '₱3.69', 'A creamy, layered dessert made with fresh bananas, vanilla pudding, and soft wafers, topped with whipped cream.', '../images/banana-pudding.jpg')"
+            onclick="updateProductDetails('Banana Pudding', '₱3.69', 'A creamy, layered dessert made with fresh bananas, vanilla pudding, and soft wafers, topped with whipped cream.', 'style/banana-pudding.jpg')"
           >
-            <img src="../images/banana-pudding.jpg" alt="Banana Pudding" />
+            <img src="/style/banana-pudding.jpg" alt="Banana Pudding" />
             <div class="overlay">View More</div>
             <div class="product-card-text">
               <h4>Banana Pudding</h4>
@@ -190,9 +186,9 @@
         <div class="box" style="animation-delay: 0.5s">
           <div
             class="product-card"
-            onclick="updateProductDetails('Oreo Brookies', '₱5.99', 'A decadent fusion of fudgy brownies and chewy cookies, packed with Oreo chunks for indulgence.', '../images/oreo-brookies.jpg')"
+            onclick="updateProductDetails('Oreo Brookies', '₱5.99', 'A decadent fusion of fudgy brownies and chewy cookies, packed with Oreo chunks for indulgence.', 'style/oreo-brookies.jpg')"
           >
-            <img src="../images/oreo-brookies.jpg" alt="Oreo Brookies" />
+            <img src="style/oreo-brookies.jpg" alt="Oreo Brookies" />
             <div class="overlay">View More</div>
             <div class="product-card-text">
               <h4>Oreo Brookies</h4>
@@ -204,9 +200,9 @@
         <div class="box" style="animation-delay: 1s">
           <div
             class="product-card"
-            onclick="updateProductDetails('Leche Flan', '₱4.50', 'A rich and silky custard topped with a golden caramel glaze—this Filipino classic melts in your mouth.', '../images/leche-flan.jpg')"
+            onclick="updateProductDetails('Leche Flan', '₱4.50', 'A rich and silky custard topped with a golden caramel glaze—this Filipino classic melts in your mouth.', 'style/leche-flan.jpg')"
           >
-            <img src="../images/leche-flan.jpg" alt="Leche Flan" />
+            <img src="style/leche-flan.jpg" alt="Leche Flan" />
             <div class="overlay">View More</div>
             <div class="product-card-text">
               <h4>Leche Flan</h4>
@@ -260,7 +256,7 @@
         <div class="modal-body">
           <div class="modal-left">
             <h2>Mitch Lao</h2>
-            <img src="../images/MitchLao.jpg" alt="Mitch Lao with cakes" />
+            <img src="style/MitchLao.jpg" alt="Mitch Lao with cakes" />
           </div>
           <div class="modal-right">
             <h3 class="modal-tagline">crafting joy, one pastry at a time</h3>
