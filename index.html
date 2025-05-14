@@ -6,11 +6,11 @@
     <title>Mitch Pasties HomePage</title>
 
     <!-- External Stylesheets -->
-    <link rel="stylesheet" href="./ClientSide/Client_homepage/style/section1navbar.css" />
-    <link rel="stylesheet" href="./ClientSide/Client_homepage/style/section1welcom.css" />
-    <link rel="stylesheet" href="./ClientSide/Client_homepage/style/section2.css" />
-    <link rel="stylesheet" href="./ClientSide/Client_homepage/style/section3.css" />
-    <link rel="stylesheet" href="./ClientSide/Client_homepage/style/footer.css" />
+    <link rel="stylesheet" href="homepage/styleC/section1navbar.css" />
+    <link rel="stylesheet" href="homepage/styleC/section1welcom.css" />
+    <link rel="stylesheet" href="homepage/styleC/section2.css" />
+    <link rel="stylesheet" href="homepage/styleC/section3.css" />
+    <link rel="stylesheet" href="homepage/styleC/footer.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -35,6 +35,38 @@
         background-color: rgba(0, 0, 0, 0.5);
         justify-content: center;
         align-items: center;
+      }
+
+      /* Account Buttons Styling */
+      .sign-in-btn, .sign-up-btn {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .sign-in-btn {
+        background-color: transparent;
+        border: 2px solid #f39c12;
+        color: #f39c12;
+      }
+
+      .sign-up-btn {
+        background-color: #f39c12;
+        border: 2px solid #f39c12;
+        color: white;
+      }
+
+      .sign-in-btn:hover {
+        background-color: #f39c12;
+        color: white;
+      }
+
+      .sign-up-btn:hover {
+        background-color: #e67e22;
+        border-color: #e67e22;
       }
 
       /* Product Modal */
@@ -141,9 +173,10 @@
           <a href="../loading/index.html?target=../catalogue/index.php">Catalogue</a>
           <a href="../Checkout page/index.php">Cart</a>
         </div>
-        <div class="auth-section">
-          <a href="../../authorization/index.php" class="auth-btn login-btn">Login</a>
-          <a href="../../authorization/index.php?action=signup" class="auth-btn signup-btn">Sign Up</a>
+        <div class="nav-section">
+          <p class="section-title">ACCOUNT</p>
+          <a href="authorization/index.php" class="sign-in-btn">Sign In</a>
+          <a href="authorization/signup.php" class="sign-up-btn">Sign Up</a>
         </div>
       </div>
     </section>
@@ -172,9 +205,9 @@
         <div class="box" style="animation-delay: 0s">
           <div
             class="product-card"
-            onclick="updateProductDetails('Banana Pudding', '₱3.69', 'A creamy, layered dessert made with fresh bananas, vanilla pudding, and soft wafers, topped with whipped cream.', 'style/banana-pudding.jpg')"
+            onclick="updateProductDetails('Banana Pudding', '₱3.69', 'A creamy, layered dessert made with fresh bananas, vanilla pudding, and soft wafers, topped with whipped cream.', 'images/banana-pudding.jpg')"
           >
-            <img src="/style/banana-pudding.jpg" alt="Banana Pudding" />
+            <img src="images/banana-pudding.jpg" alt="Banana Pudding" />
             <div class="overlay">View More</div>
             <div class="product-card-text">
               <h4>Banana Pudding</h4>
@@ -186,9 +219,9 @@
         <div class="box" style="animation-delay: 0.5s">
           <div
             class="product-card"
-            onclick="updateProductDetails('Oreo Brookies', '₱5.99', 'A decadent fusion of fudgy brownies and chewy cookies, packed with Oreo chunks for indulgence.', 'style/oreo-brookies.jpg')"
+            onclick="updateProductDetails('Oreo Brookies', '₱5.99', 'A decadent fusion of fudgy brownies and chewy cookies, packed with Oreo chunks for indulgence.', 'images/oreo-brookies.jpg')"
           >
-            <img src="style/oreo-brookies.jpg" alt="Oreo Brookies" />
+            <img src="images/oreo-brookies.jpg" alt="Oreo Brookies" />
             <div class="overlay">View More</div>
             <div class="product-card-text">
               <h4>Oreo Brookies</h4>
@@ -200,9 +233,9 @@
         <div class="box" style="animation-delay: 1s">
           <div
             class="product-card"
-            onclick="updateProductDetails('Leche Flan', '₱4.50', 'A rich and silky custard topped with a golden caramel glaze—this Filipino classic melts in your mouth.', 'style/leche-flan.jpg')"
+            onclick="updateProductDetails('Leche Flan', '₱4.50', 'A rich and silky custard topped with a golden caramel glaze—this Filipino classic melts in your mouth.', 'images/leche-flan.jpg')"
           >
-            <img src="style/leche-flan.jpg" alt="Leche Flan" />
+            <img src="images/leche-flan.jpg" alt="Leche Flan" />
             <div class="overlay">View More</div>
             <div class="product-card-text">
               <h4>Leche Flan</h4>
@@ -244,7 +277,7 @@
           </div>
         </div>
         <div class="about-image">
-          <img src="style/backgroundland.jpg" alt="Delicious Pastries" />
+          <img src="homepage/styleC/backgroundland.jpg" alt="Delicious Pastries" />
         </div>
       </div>
     </div>
@@ -256,7 +289,7 @@
         <div class="modal-body">
           <div class="modal-left">
             <h2>Mitch Lao</h2>
-            <img src="style/MitchLao.jpg" alt="Mitch Lao with cakes" />
+            <img src="images/MitchLao.jpg" alt="Mitch Lao with cakes" />
           </div>
           <div class="modal-right">
             <h3 class="modal-tagline">crafting joy, one pastry at a time</h3>
@@ -286,8 +319,7 @@
       function updateProductDetails(name, price, description, image) {
         document.getElementById("modal-product-name").textContent = name;
         document.getElementById("modal-product-price").textContent = price;
-        document.getElementById("modal-product-description").textContent =
-          description;
+        document.getElementById("modal-product-description").textContent = description;
         document.getElementById("modal-product-image").src = image;
         document.getElementById("product-modal").style.display = "flex";
       }

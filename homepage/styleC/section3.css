@@ -1,0 +1,144 @@
+.section3 {
+  background-color: #fff8ec;
+  color: #333;
+  padding: 60px 90px;
+  box-sizing: border-box;
+}
+
+.about-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.about-text {
+  flex: 1 1 400px;
+}
+
+.about-text h2 {
+  font-size: 2.8em;
+  color: #d35400;
+  margin-bottom: 10px;
+}
+
+.about-text .tagline {
+  font-size: 1.2em;
+  color: #a85e0d;
+  font-style: italic;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.about-text p {
+  font-size: 1.15em;
+  line-height: 1.7;
+  color: #4a3f3f;
+  max-width: 550px;
+}
+
+.about-image {
+  flex: 1 1 300px;
+  text-align: center;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.social-icons {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.social-icons a {
+  font-size: 1.3em;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #f39c12;
+}
+
+.btn-learn-more {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 10px 25px;
+  background-color: #e67e22;
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.btn-learn-more:hover {
+  background-color: #d35400;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .about-text {
+    align-items: center;
+  }
+
+  .btn-learn-more {
+    margin-bottom: 20px;
+  }
+}
+
+.about-text {
+  animation: fadeInLeft 1s ease forwards;
+  opacity: 0;
+}
+
+.about-image {
+  animation: fadeInRight 1s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.btn-learn-more {
+  background-color: #f39c12;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 0 15px rgba(243, 156, 18, 0.7);
+  animation: glow 1.5s infinite alternate;
+}
