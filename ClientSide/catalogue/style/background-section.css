@@ -1,11 +1,10 @@
 /* ==================== Background Section ==================== */
 .background-section {
-  background-image: url("background.jpg"); /* Replace with your image path */
   background-size: cover; /* Ensure the image covers the entire section */
   background-position: center center; /* Center the image */
   background-repeat: no-repeat; /* Prevent the image from repeating */
   padding: 0; /* Add padding to create space around content */
-  height: 10px; /* Adjust the height of the section */
+  height: 500px; /* Adjust the height of the section */
   color: white; /* Optional: set text color for better readability */
   display: flex; /* Flexbox layout for centering content */
   justify-content: center; /* Center content horizontally */
@@ -15,4 +14,5 @@
   position: relative;
   top: -30px;
   opacity: 0.7;
+  z-index: -1;
 }

@@ -16,6 +16,7 @@
   justify-content: center;
   margin-top: -550px;
   z-index: 1;
+  position: relative;
 }
 
 .welcome-text h1 {
@@ -63,7 +64,7 @@
 /* ==================== Background Section ==================== */
 .background-section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url("../../images/catalog-welcome-background.jpg");
+    url("catalog-welcome-background.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

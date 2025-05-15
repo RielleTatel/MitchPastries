@@ -16,20 +16,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $email = $_POST["email"];
     $pass = $_POST["password"];
 
-    $sql = $conn->prepare("SELECT u_password FROM registration WHERE u_email = ?");
+    $sql = $conn->prepare("SELECT u_password, u_fullname FROM registration WHERE u_email = ?");
     $sql->bind_param("s", $email);
     $sql->execute();
     $result = $sql->get_result();
 
     if ($result->num_rows === 1) {
-
         $row = $result->fetch_assoc();
         $hashed_pass = $row["u_password"];
 
         if (password_verify($pass, $hashed_pass)) {
+            // Store user data in session
+            $_SESSION['logged_in'] = true;
             $_SESSION['email'] = $email;
-            header("Location: ../homePage/index.html");
-            exit;
+            $_SESSION['fullname'] = $row['u_fullname'];
+
+            // Check for admin
+            if ($email === 'admin@gmail.com') {
+                $_SESSION['is_admin'] = true;
+                header('Location: ../SeeCustomerOrders/index.php');
+                exit;
+            } else {
+                $_SESSION['is_admin'] = false;
+                header('Location: ../index.php'); // or your user homepage
+                exit;
+            }
         } else {
             header("Location: index.php?error=wrongpass");
             exit;   

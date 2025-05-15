@@ -11,33 +11,30 @@ try {
         throw new Exception("Connection failed: " . $conn->connect_error);
     }
 
-    // Start transaction
-    $conn->begin_transaction();
-
-    try {
-        // First, drop the existing foreign key constraint
-        $sql = "ALTER TABLE completed_orders DROP FOREIGN KEY completed_orders_ibfk_1";
-        if (!$conn->query($sql)) {
-            throw new Exception("Failed to drop foreign key: " . $conn->error);
-        }
-
-        // Add the new foreign key constraint with ON DELETE SET NULL
-        $sql = "ALTER TABLE completed_orders ADD CONSTRAINT completed_orders_ibfk_1 
-                FOREIGN KEY (order_id) REFERENCES Orders(id) ON DELETE SET NULL";
-        if (!$conn->query($sql)) {
-            throw new Exception("Failed to add new foreign key: " . $conn->error);
-        }
-
-        // Commit transaction
-        $conn->commit();
-        echo "Successfully updated foreign key constraints";
-        
-    } catch (Exception $e) {
-        // Rollback transaction on error
-        $conn->rollback();
-        throw $e;
-    }
+    // First, check if the foreign key exists
+    $result = $conn->query("SELECT CONSTRAINT_NAME 
+                           FROM information_schema.TABLE_CONSTRAINTS 
+                           WHERE TABLE_SCHEMA = '$dbname' 
+                           AND TABLE_NAME = 'order_itemsUser' 
+                           AND CONSTRAINT_TYPE = 'FOREIGN KEY'");
     
+    if ($result && $result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $constraint_name = $row['CONSTRAINT_NAME'];
+        
+        // Drop the existing foreign key
+        $conn->query("ALTER TABLE order_itemsUser DROP FOREIGN KEY `$constraint_name`");
+    }
+
+    // Add the new foreign key constraint
+    $conn->query("ALTER TABLE order_itemsUser 
+                 ADD CONSTRAINT order_itemsuser_ibfk_1 
+                 FOREIGN KEY (order_id) 
+                 REFERENCES ordersUser(id) 
+                 ON DELETE CASCADE");
+
+    echo "Foreign key constraint updated successfully!";
+
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
 } finally {

@@ -69,37 +69,87 @@ body {
 .customers-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 1rem;
+  background: white;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
 }
 
-.customers-table thead th {
-  background-color: var(--light);
-  color: var(--gray);
-  font-weight: 600;
+.customers-table th,
+.customers-table td {
   padding: 1rem;
   text-align: left;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 0.5px;
-}
-
-.customers-table tbody tr {
   border-bottom: 1px solid var(--light-gray);
-  transition: var(--transition);
 }
 
-.customers-table tbody tr:hover {
-  background-color: rgba(67, 97, 238, 0.05);
-}
-
-.customers-table tbody td {
-  padding: 1rem;
+.customers-table th {
+  background-color: var(--light);
+  font-weight: 600;
   color: var(--dark);
 }
 
+.customers-table td {
+  vertical-align: middle;
+}
+
+/* Center align the address column */
+.customers-table td:nth-child(3) {
+  text-align: center;
+}
+
+/* Action Buttons Container */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Button Styles */
+.view-btn,
+.update-btn,
+.delete-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.view-btn {
+  background-color: var(--primary);
+  color: white;
+}
+
+.view-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.update-btn {
+  background-color: var(--warning);
+  color: white;
+}
+
+.update-btn:hover {
+  background-color: #e08a1e;
+}
+
+.delete-btn {
+  background-color: var(--danger);
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #d61a6b;
+}
+
+/* Status Badge */
 .status-badge {
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.8em;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
   font-weight: 500;
 }
 
@@ -108,19 +158,24 @@ body {
   color: #856404;
 }
 
+.status-badge.in-progress {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.status-badge.complete {
+  background-color: #218838;
+  color: #fff;
+}
+
 .status-badge.processing {
   background-color: #cce5ff;
   color: #004085;
 }
 
-.status-badge.paid {
+.status-badge.completed {
   background-color: #d4edda;
   color: #155724;
-}
-
-.status-badge.completed {
-  background-color: #d1e7dd;
-  color: #0f5132;
 }
 
 .btn {
@@ -460,4 +515,23 @@ body {
 .btn-status.active {
     background-color: var(--primary);
     color: white;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--danger);
+  transition: background 0.2s;
+}
+.icon-btn:hover {
+  background: #ffe3ef;
+  color: #d61a6b;
+}
+.delete-btn svg {
+  display: block;
 }

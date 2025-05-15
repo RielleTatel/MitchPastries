@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sweet Shop Checkout</title>
+    <link rel="stylesheet" href="checkoutDiv.css" />
+    <link rel="stylesheet" href="navbar.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        background-color: #fdf3e3;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="navigation-bar">
+      <div class="top-navbar">
+        <div class="nav-section">
+          <p class="section-title">MAIN</p>
+          <a href="">Home</a>
+          <a href="">Catalogue</a>
+          <a href="checkout.html">Cart</a>
+        </div>
+
+        <div class="nav-section">
+          <p class="section-title">ADMIN PANEL</p>
+          <a href="">Dashboard</a>
+          <a href="">Menu List</a>
+          <a href="" class="active">Orders</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- Section 1: Checkout -->
+      <div class="section1">
+        <h2>Checkout Summary</h2>
+        <table id="checkout-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price (₱)</th>
+              <th>Qty</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-price="3.50">
+              <td>Chocolate Donut</td>
+              <td>₱3.50</td>
+              <td>
+                <input
+                  type="number"
+                  min="0"
+                  value="1"
+                  onchange="updateTotals()"
+                />
+              </td>
+              <td class="item-total">₱3.50</td>
+            </tr>
+            <tr data-price="4.00">
+              <td>Strawberry Tart</td>
+              <td>₱4.00</td>
+              <td>
+                <input
+                  type="number"
+                  min="0"
+                  value="1"
+                  onchange="updateTotals()"
+                />
+              </td>
+              <td class="item-total">₱4.00</td>
+            </tr>
+            <tr data-price="2.75">
+              <td>Blueberry Muffin</td>
+              <td>₱2.75</td>
+              <td>
+                <input
+                  type="number"
+                  min="0"
+                  value="1"
+                  onchange="updateTotals()"
+                />
+              </td>
+              <td class="item-total">₱2.75</td>
+            </tr>
+            <tr data-price="1.80">
+              <td>Vanilla Macaron</td>
+              <td>₱1.80</td>
+              <td>
+                <input
+                  type="number"
+                  min="0"
+                  value="1"
+                  onchange="updateTotals()"
+                />
+              </td>
+              <td class="item-total">₱1.80</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="summary">
+          <p>
+            <strong>Total Price:</strong> ₱<span id="total-price">12.05</span>
+          </p>
+          <p>
+            <strong>Discount (5%):</strong> ₱<span id="discount">0.60</span>
+          </p>
+          <p>
+            <strong>Final Price:</strong> ₱<span id="final-price">11.45</span>
+          </p>
+        </div>
+
+        <div class="place-another-bttn">
+          <a href="index.html">
+            <button type="button">Place Another Order ?</button>
+          </a>
+        </div>
+      </div>
+
+      <!-- Section 2: Customer Details -->
+      <div class="section2">
+        <form action="submit_order.php" method="POST">
+          <h2>Customer Info</h2>
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder="Enter your full name"
+          />
+
+          <label for="address">Address:</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            required
+            placeholder="Enter your delivery address"
+          />
+
+          <label for="cellphone">Cellphone Number:</label>
+          <input
+            type="tel"
+            id="cellphone"
+            name="cellphone"
+            required
+            placeholder="Enter your cellphone number"
+            pattern="(\+?\d{1,4}[\s\-]?)?(\(?\d{2,3}\)?[\s\-]?)?[\d\s\-]{7,10}"
+            title="Please enter a valid phone number"
+          />
+
+          <label for="socialmedia">Social Media Account (Optional):</label>
+          <input
+            type="text"
+            id="socialmedia"
+            name="socialmedia"
+            placeholder="e.g. @yourhandle"
+          />
+
+          <input type="submit" value="Submit Order" />
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function updateTotals() {
+        const rows = document.querySelectorAll("#checkout-table tbody tr");
+        let total = 0;
+
+        rows.forEach((row) => {
+          const price = parseFloat(row.dataset.price);
+          const qty =
+            parseInt(row.querySelector('input[type="number"]').value) || 0;
+          const itemTotal = price * qty;
+          row.querySelector(".item-total").textContent = `₱${itemTotal.toFixed(
+            2
+          )}`;
+          total += itemTotal;
+        });
+
+        const discount = total * 0.05;
+        const final = total - discount;
+
+        document.getElementById("total-price").textContent = total.toFixed(2);
+        document.getElementById("discount").textContent = discount.toFixed(2);
+        document.getElementById("final-price").textContent = final.toFixed(2);
+      }
+
+      // Run once at start to recalculate based on default quantities
+      updateTotals();
+    </script>
+  </body>
+</html>

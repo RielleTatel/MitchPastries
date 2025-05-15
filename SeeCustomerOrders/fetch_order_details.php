@@ -1,6 +1,5 @@
 <?php
 header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: *");
 
 $host = "localhost";
 $dbname = "user";
@@ -9,83 +8,62 @@ $password = "";
 
 try {
     $conn = new mysqli($host, $username, $password, $dbname);
-    
     if ($conn->connect_error) {
         throw new Exception("Connection failed: " . $conn->connect_error);
     }
 
-    $orderId = $_GET['id'] ?? '';
-    if (empty($orderId)) {
+    $order_id = $_GET['id'] ?? 0;
+    if (!$order_id) {
         throw new Exception("Order ID is required");
     }
 
-    $sql = "SELECT * FROM orders WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    if (!$stmt) {
-        throw new Exception("Failed to prepare statement for Orders: " . $conn->error);
-    }
-    
-    $stmt->bind_param("i", $orderId);
+    // Try to fetch from ordersUser first
+    $stmt = $conn->prepare("
+        SELECT id, user_email, customer_name, address, phone, social_media, 
+               total_price, discount, final_price, status, created_at 
+        FROM ordersUser 
+        WHERE id = ?
+    ");
+    $stmt->bind_param("i", $order_id);
     $stmt->execute();
-    $result = $stmt->get_result();
-    $order = $result->fetch_assoc();
+    $order = $stmt->get_result()->fetch_assoc();
 
-    // If not found in active orders, check in completed orders
+    // If not found, try completed_orders
     if (!$order) {
-        $sql = "SELECT * FROM completed_orders WHERE id = ?";
-        $stmt = $conn->prepare($sql);
-        if (!$stmt) {
-            throw new Exception("Failed to prepare statement for completed_orders: " . $conn->error);
-        }
-        
-        $stmt->bind_param("i", $orderId);
+        $stmt = $conn->prepare("
+            SELECT id, order_id, customer_name, address, phone, social_media, 
+                   total_price, discount, final_price, status, created_at, completed_at 
+            FROM completed_orders 
+            WHERE id = ? OR order_id = ?
+        ");
+        $stmt->bind_param("ii", $order_id, $order_id);
         $stmt->execute();
-        $result = $stmt->get_result();
-        $order = $result->fetch_assoc();
+        $order = $stmt->get_result()->fetch_assoc();
+        // For completed orders, set user_email to null if not present
+        if ($order && !isset($order['user_email'])) {
+            $order['user_email'] = null;
+        }
     }
 
     if (!$order) {
         throw new Exception("Order not found");
     }
 
-    // Get order items
-    $sql = "SELECT * FROM order_items WHERE order_id = ?";
-    $stmt = $conn->prepare($sql);
-    if (!$stmt) {
-        throw new Exception("Failed to prepare statement for order_items: " . $conn->error);
-    }
-    
-    $stmt->bind_param("i", $orderId);
+    // Fetch order items (always use order_id for completed orders)
+    $order_items_id = isset($order['order_id']) ? $order['order_id'] : $order['id'];
+    $stmt = $conn->prepare("
+        SELECT id, product_id, product_name, price, quantity, created_at 
+        FROM order_itemsUser 
+        WHERE order_id = ?
+    ");
+    $stmt->bind_param("i", $order_items_id);
     $stmt->execute();
-    $result = $stmt->get_result();
-    
-    $items = array();
-    while ($row = $result->fetch_assoc()) {
-        $items[] = array(
-            'product_name' => $row['product_name'] ?? 'N/A',
-            'price' => $row['price'] ?? 0,
-            'quantity' => $row['quantity'] ?? 0
-        );
-    }
-    
-    // Ensure all required fields are present in the order
-    $response = array(
-        'id' => $order['id'],
-        'customer_name' => $order['customer_name'] ?? 'N/A',
-        'address' => $order['address'] ?? 'N/A',
-        'phone' => $order['phone'] ?? 'N/A',
-        'social_media' => $order['social_media'] ?? 'N/A',
-        'status' => $order['status'] ?? 'Pending',
-        'total_price' => $order['total_price'] ?? 0,
-        'discount' => $order['discount'] ?? 0,
-        'final_price' => $order['final_price'] ?? 0,
-        'created_at' => $order['created_at'] ?? null,
-        'completed_at' => $order['completed_at'] ?? null,
-        'items' => $items
-    );
+    $items = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-    echo json_encode($response);
-    
+    $order['items'] = $items;
+
+    echo json_encode($order);
+
 } catch (Exception $e) {
     echo json_encode(['error' => $e->getMessage()]);
 } finally {

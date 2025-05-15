@@ -21,7 +21,7 @@
 
 .special-offer-image {
   flex: 1;
-  background-image: url("../../images/tart.jpg");
+  background-image: url("tart.jpg");
   background-size: cover;
   background-position: center;
   min-height: 300px;

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -47,16 +50,21 @@
         <div class="top-navbar">
           <div class="nav-section">
             <p class="section-title">MAIN</p>
-            <a href="../index.html">Home</a>
-            <a href="../catalogue/index.html" class="active">Catalogue</a>
+            <a href="../../index.php">Home</a>
+            <a href="../catalogue/index.php" class="active">Catalogue</a>
             <a href="../Checkout page/index.php">Cart</a>
           </div>
 
           <div class="nav-section">
-            <p class="section-title">ADMIN PANEL</p>
-            <a href="../dashboard/index.html">Dashboard</a>
-            <a href="../menu/menu.html"> Menu List </a>
-            <a href="../SeeCustomerOrders/index.html">Orders</a>
+            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
+              <div class="user-account" style="display: flex; align-items: center; gap: 15px;">
+                <span class="user-name" style="color: #f9f9f9; font-size: 14px;">Welcome, <?php echo htmlspecialchars($_SESSION['fullname']); ?></span>
+                <a href="../authorization/logout.php" class="logout-btn" style="color: #f9f9f9; text-decoration: none; font-size: 14px; padding: 8px 12px; border-radius: 6px; background-color: #c97b63; transition: background 0.2s ease;">Logout</a>
+              </div>
+            <?php else: ?>
+              <a href="../authorization/index.php" class="sign-in-btn" style="color: #f9f9f9; text-decoration: none; font-size: 14px; padding: 8px 12px; border-radius: 6px; transition: background 0.2s ease;">Sign In</a>
+              <a href="../authorization/index.php" class="sign-up-btn" style="color: #f9f9f9; text-decoration: none; font-size: 14px; padding: 8px 12px; border-radius: 6px; transition: background 0.2s ease;">Sign Up</a>
+            <?php endif; ?>
           </div>
         </div>
       </section>
@@ -111,7 +119,7 @@
         <h2 class="glow-heading">FEATURED PRODUCTS</h2>
         <div class="featured-products-boxes">
           <div class="featured-products-card">
-            <img src="../images/chocolate-cake.jpg" alt="Chocolate Cake" />
+            <img src="../../images/chocolate-cake.jpg" alt="Chocolate Cake" />
             <div class="label-badge">Best Seller</div>
             <div class="product-info">
               <div>
@@ -128,7 +136,7 @@
           </div>
       
           <div class="featured-products-card">
-            <img src="../images/pie.jpg" alt="Fruit Pie" />
+            <img src="../../images/pie.jpg" alt="Fruit Pie" />
             <div class="product-info">
               <div>
                 <h3>Fruit Pie</h3>
@@ -144,7 +152,7 @@
           </div>
       
           <div class="featured-products-card">
-            <img src="../images/chocolate-donut.jpg" alt="Chocolate Donut" />
+            <img src="../../images/chocolate-donut.jpg" alt="Chocolate Donut" />
             <div class="product-info">
               <div>
                 <h3>Chocolate Donut</h3>
@@ -160,7 +168,7 @@
           </div>
       
           <div class="featured-products-card">
-            <img src="../images/muffin.jpg" alt="Blueberry Muffin" />
+            <img src="../../images/muffin.jpg" alt="Blueberry Muffin" />
             <div class="product-info">
               <div>
                 <h3>Blueberry Muffin</h3>
@@ -176,7 +184,7 @@
           </div>
       
           <div class="featured-products-card">
-            <img src="../images/macaron.jpg" alt="Macaron" />
+            <img src="../../images/macaron.jpg" alt="Macaron" />
             <div class="product-info">
               <div>
                 <h3>Macaron</h3>
@@ -192,7 +200,7 @@
           </div>
       
           <div class="featured-products-card">
-            <img src="../images/chocolate-brownies.jpg" alt="Chocolate Brownie" />
+            <img src="../../images/chocolate-brownies.jpg" alt="Chocolate Brownie" />
             <div class="product-info">
               <div>
                 <h3>Chocolate Brownie</h3>
@@ -217,7 +225,7 @@
           <div class="popular-boxes" id="carousel-track">
             <!-- Popular item cards with images, descriptions, and prices -->
             <div class="popular-card">
-              <img src="../images/chocolate-cake.jpg" alt="Chocolate Cake" />
+              <img src="../../images/chocolate-cake.jpg" alt="Chocolate Cake" />
               <div class="name-des">
                 <p class="item-name">Chocolate Cake</p>
                 <a class="popu-item-def">Rich and moist chocolate layers.</a>
@@ -231,7 +239,7 @@
             </div>
       
             <div class="popular-card">
-              <img src="../images/chocolate-marble.jpg" alt="Choco Marble" />
+              <img src="../../images/chocolate-marble.jpg" alt="Choco Marble" />
               <div class="name-des">
                 <p class="item-name">Choco Marble</p>
                 <a class="popu-item-def">Soft and fluffy chocolate glaze.</a>
@@ -245,7 +253,7 @@
             </div>
       
             <div class="popular-card">
-              <img src="../images/strawberry-tart.jpg" alt="Strawberry Tart" />
+              <img src="../../images/strawberry-tart.jpg" alt="Strawberry Tart" />
               <div class="name-des">
                 <p class="item-name">Strawberry Tart</p>
                 <a class="popu-item-def">Crisp crust with fresh strawberries.</a>
@@ -259,7 +267,7 @@
             </div>
       
             <div class="popular-card">
-              <img src="../images/blueberry-muffin.jpg" alt="Blueberry Muffin" />
+              <img src="../../images/blueberry-muffin.jpg" alt="Blueberry Muffin" />
               <div class="name-des">
                 <p class="item-name">Blueberry Muffin</p>
                 <a class="popu-item-def">Bursting with fresh blueberries.</a>
@@ -273,7 +281,7 @@
             </div>
       
             <div class="popular-card">
-              <img src="../images/caramel-brownies.jpg" alt="Caramel Brownie" />
+              <img src="../../images/caramel-brownies.jpg" alt="Caramel Brownie" />
               <div class="name-des">
                 <p class="item-name">Caramel Brownie</p>
                 <a class="popu-item-def">Fudgy base with a caramel swirl.</a>
@@ -287,7 +295,7 @@
             </div>
       
             <div class="popular-card">
-              <img src="../images/rainbow-macarons.jpg" alt="Rainbow Macarons" />
+              <img src="../../images/rainbow-macarons.jpg" alt="Rainbow Macarons" />
               <div class="name-des">
                 <p class="item-name">Rainbow Macarons</p>
                 <a class="popu-item-def">Assorted flavors and vibrant colors.</a>
@@ -311,7 +319,7 @@
           <h1 class="food-title">CROISSANTS</h1>
           <div class="Food">
             <div class="card">
-              <img class="img" src="../images/croissant.jpg" alt="Croissant" />
+              <img class="img" src="../../images/croissant.jpg" alt="Croissant" />
               <div class="name-des">
                 <p class="item-name">Choco Marble</p>
                 <p class="item-def">Flaky croissant filled with rich chocolate layers.</p>
@@ -329,7 +337,7 @@
           <h1 class="food-title">CAKES</h1>
           <div class="Food">
             <div class="card">
-              <img class="img" src="../images/chocolate-cake.jpg" alt="Cake" />
+              <img class="img" src="../../images/chocolate-cake.jpg" alt="Cake" />
               <div class="name-des">
                 <p class="item-name">Choco Marble</p>
                 <p class="item-def">Delicious chocolate marble cake with creamy texture.</p>
@@ -347,7 +355,7 @@
           <h1 class="food-title">COOKIES</h1>
           <div class="Food">
             <div class="card">
-              <img class="img" src="../images/cookies.jpg" alt="Cookies" />
+              <img class="img" src="../../images/cookies.jpg" alt="Cookies" />
               <div class="name-des">
                 <p class="item-name">Choco Marble</p>
                 <p class="item-def">Crunchy outside, chewy inside with chocolate swirls.</p>
@@ -365,7 +373,7 @@
           <h1 class="food-title">MUFFINS</h1>
           <div class="Food">
             <div class="card">
-              <img class="img" src="../images/muffin.jpg" alt="Muffin" />
+              <img class="img" src="../../images/muffin.jpg" alt="Muffin" />
               <div class="name-des">
                 <p class="item-name">Choco Marble</p>
                 <p class="item-def">Moist chocolate muffin perfect with coffee.</p>
@@ -383,7 +391,7 @@
           <h1 class="food-title">BROWNIES</h1>
           <div class="Food">
             <div class="card">
-              <img class="img" src="../images/chocolate-brownies.jpg" alt="Brownie" />
+              <img class="img" src="../../images/chocolate-brownies.jpg" alt="Brownie" />
               <div class="name-des">
                 <p class="item-name">Choco Marble</p>
                 <p class="item-def">Rich and fudgy chocolate brownie.</p>
@@ -401,7 +409,7 @@
           <h1 class="food-title">MACARONS</h1>
           <div class="Food">
             <div class="card">
-              <img class="img" src="../images/macaron.jpg" alt="Macaron" />
+              <img class="img" src="../../images/macaron.jpg" alt="Macaron" />
               <div class="name-des">
                 <p class="item-name">Choco Marble</p>
                 <p class="item-def">Delicate French macarons with a chocolaty twist.</p>
@@ -419,7 +427,7 @@
           <h1 class="food-title">DONUTS</h1>
           <div class="Food">
             <div class="card">
-              <img class="img" src="../images/chocolate-donut.jpg" alt="Donut" />
+              <img class="img" src="../../images/chocolate-donut.jpg" alt="Donut" />
               <div class="name-des">
                 <p class="item-name">Choco Marble</p>
                 <p class="item-def">Classic donut glazed and filled with chocolate.</p>
@@ -847,7 +855,7 @@
         const specialOffer = e.target.closest('.special-offer-section');
         if (specialOffer) {
           showModal({
-            imgSrc: '../images/tart.jpg',
+            imgSrc: '../../images/tart.jpg',
             name: 'Strawberry Surprise',
             description: 'Limited-time sweet with real strawberries and cream.',
             price: '₱1.99'
@@ -903,7 +911,7 @@ This function is a perfect example of JavaScript → PHP integration via AJAX (i
 Inside this function, you gather product data (like name, price, and quantity) and package it using a FormData object.
 You then use fetch('add_to_cart.php', { method: 'POST', body: formData }) to send this data to a PHP script.
 The add_to_cart.php file is expected to receive the $_POST data, process it (usually storing it in a database or session), and return a message — like "Item added to cart" — that gets handled and shown via JavaScript.
-Integration Summary: JS sends product data to add_to_cart.php, PHP processes it, and JS reacts to PHP’s response (like showing an alert).
+Integration Summary: JS sends product data to add_to_cart.php, PHP processes it, and JS reacts to PHP's response (like showing an alert).
 
 -->
 
