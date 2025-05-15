@@ -39,11 +39,13 @@ function updateOrdersTable(tableId, orders) {
     orders.forEach(order => {
         console.log('Processing order:', order);
         const row = document.createElement('tr');
+        const status = order.status || 'Complete';
+        const statusClass = status.toLowerCase().replace(/\s+/g, '-');
         row.innerHTML = `
             <td>${order.id || order.order_id}</td>
             <td>${order.customer_name}</td>
             <td>${order.address}</td>
-            <td><span class="status-badge ${(order.status || 'Complete').toLowerCase().replace(' ', '-')}">${order.status || 'Complete'}</span></td>
+            <td><span class="status-badge ${statusClass}" style="white-space: nowrap;">${status}</span></td>
             <td>
                 <div class="action-buttons">
                     <button class="view-btn view-order-btn" data-id="${order.id || order.order_id}">View Order</button>
@@ -106,12 +108,28 @@ async function viewOrder(orderId) {
         if (!isCompleted) {
             const statusOptions = [
                 { value: 'Pending', label: 'Pending', color: '#ffc107', text: '#856404' },
-                { value: 'In Progress', label: 'In Progress', color: '#28a745', text: '#fff' },
-                { value: 'Complete', label: 'Complete', color: '#218838', text: '#fff' }
+                { value: 'In Progress', label: 'In Progress', color: '#17a2b8', text: '#fff' },
+                { value: 'Complete', label: 'Complete', color: '#28a745', text: '#fff' }
             ];
-            statusControls = `<div class="status-controls" style="margin: 1rem 0;">`;
+            statusControls = `<div class="status-controls" style="margin: 1rem 0; display: flex; gap: 10px; flex-wrap: wrap;">`;
             statusOptions.forEach(opt => {
-                statusControls += `<button class="status-btn" data-status="${opt.value}" style="background:${opt.color};color:${opt.text};margin-right:8px;${order.status===opt.value?'font-weight:bold;box-shadow:0 0 0 2px #333':''}">${opt.label}</button>`;
+                statusControls += `
+                    <button class="status-btn" data-status="${opt.value}" 
+                        style="
+                            background: ${opt.color};
+                            color: ${opt.text};
+                            padding: 8px 16px;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            font-weight: 500;
+                            transition: all 0.2s ease;
+                            min-width: 100px;
+                            ${order.status === opt.value ? 'transform: scale(1.05); box-shadow: 0 2px 5px rgba(0,0,0,0.2);' : ''}
+                        "
+                        onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 2px 5px rgba(0,0,0,0.2)';"
+                        onmouseout="this.style.transform='${order.status === opt.value ? 'scale(1.05)' : 'scale(1)'}';this.style.boxShadow='${order.status === opt.value ? '0 2px 5px rgba(0,0,0,0.2)' : 'none'}';"
+                    >${opt.label}</button>`;
             });
             statusControls += `</div>`;
         }
@@ -119,7 +137,7 @@ async function viewOrder(orderId) {
         // Fill in the order details
         const orderInfo = modal.querySelector('.order-info');
         if (isCompleted) {
-            // Show all completed_orders fields
+            // Show all completed_orders fields without the products table
             orderInfo.innerHTML = `
                 <h2>Completed Order #${order.order_id || order.id}</h2>
                 <p><strong>Customer Name:</strong> ${order.customer_name}</p>
@@ -129,26 +147,6 @@ async function viewOrder(orderId) {
                 <p><strong>Order Date:</strong> ${order.created_at ? new Date(order.created_at).toLocaleString() : ''}</p>
                 <p><strong>Completed At:</strong> ${order.completed_at ? new Date(order.completed_at).toLocaleString() : ''}</p>
                 <p><strong>Status:</strong> <span class="status-badge ${order.status ? order.status.toLowerCase().replace(' ', '-') : ''}">${order.status || 'Complete'}</span></p>
-                <table class="order-items">
-                    <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Subtotal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${(order.items && order.items.length > 0) ? order.items.map(item => `
-                            <tr>
-                                <td>${item.product_name}</td>
-                                <td>₱${parseFloat(item.price).toFixed(2)}</td>
-                                <td>${item.quantity}</td>
-                                <td>₱${(parseFloat(item.price) * item.quantity).toFixed(2)}</td>
-                            </tr>
-                        `).join('') : '<tr><td colspan="4">No items available</td></tr>'}
-                    </tbody>
-                </table>
                 <div class="order-total">
                     <span>Total Price:</span>
                     <span>₱${parseFloat(order.total_price).toFixed(2)}</span>
@@ -165,7 +163,7 @@ async function viewOrder(orderId) {
                 </div>
             `;
         } else {
-            // Active order modal (with status controls)
+            // Active order modal (with status controls and products table)
             orderInfo.innerHTML = `
                 <h2>Order #${order.id}</h2>
                 <p><strong>Customer Name:</strong> ${order.customer_name}</p>

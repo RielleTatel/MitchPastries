@@ -59,11 +59,11 @@ session_start();
             <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
               <div class="user-account" style="display: flex; align-items: center; gap: 15px;">
                 <span class="user-name" style="color: #f9f9f9; font-size: 14px;">Welcome, <?php echo htmlspecialchars($_SESSION['fullname']); ?></span>
-                <a href="../authorization/logout.php" class="logout-btn" style="color: #f9f9f9; text-decoration: none; font-size: 14px; padding: 8px 12px; border-radius: 6px; background-color: #c97b63; transition: background 0.2s ease;">Logout</a>
+                <a href="../../authorization/logout.php" class="logout-btn" style="color: #f9f9f9; text-decoration: none; font-size: 14px; padding: 8px 12px; border-radius: 6px; background-color: #c97b63; transition: background 0.2s ease;">Logout</a>
               </div>
             <?php else: ?>
-              <a href="../authorization/index.php" class="sign-in-btn" style="color: #f9f9f9; text-decoration: none; font-size: 14px; padding: 8px 12px; border-radius: 6px; transition: background 0.2s ease;">Sign In</a>
-              <a href="../authorization/index.php" class="sign-up-btn" style="color: #f9f9f9; text-decoration: none; font-size: 14px; padding: 8px 12px; border-radius: 6px; transition: background 0.2s ease;">Sign Up</a>
+              <a href="../../authorization/index.php" class="sign-in-btn" style="color: #f9f9f9; text-decoration: none; font-size: 14px; padding: 8px 12px; border-radius: 6px; transition: background 0.2s ease;">Sign In</a>
+              <a href="../../authorization/index.php" class="sign-up-btn" style="color: #f9f9f9; text-decoration: none; font-size: 14px; padding: 8px 12px; border-radius: 6px; transition: background 0.2s ease;">Sign Up</a>
             <?php endif; ?>
           </div>
         </div>

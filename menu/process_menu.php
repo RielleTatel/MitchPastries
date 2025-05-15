@@ -48,6 +48,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     $stmt->execute();
+    
+    if ($stmt->affected_rows > 0) {
+        echo "Product added/updated successfully!";
+    } else {
+        echo "Failed to add/update product.";
+    }
     $stmt->close();
 }
 $conn->close();

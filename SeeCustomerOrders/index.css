@@ -147,24 +147,28 @@ body {
 
 /* Status Badge */
 .status-badge {
-  padding: 0.25rem 0.75rem;
-  border-radius: 1rem;
-  font-size: 0.875rem;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
   font-weight: 500;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  min-width: 90px;
 }
 
 .status-badge.pending {
-  background-color: #fff3cd;
+  background-color: #ffc107;
   color: #856404;
 }
 
 .status-badge.in-progress {
-  background-color: #28a745;
+  background-color: #17a2b8;
   color: #fff;
 }
 
 .status-badge.complete {
-  background-color: #218838;
+  background-color: #28a745;
   color: #fff;
 }
 
@@ -337,11 +341,30 @@ body {
 }
 
 .status-controls {
+  margin: 1rem 0;
   display: flex;
-  justify-content: space-between;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--light-gray);
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.status-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-width: 100px;
+}
+
+.status-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.status-btn.active {
+  transform: scale(1.05);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .overlay {

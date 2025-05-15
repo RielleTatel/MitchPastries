@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 }
 
 // Count active orders from Orders table
-$sql = "SELECT COUNT(*) as total_orders FROM Orders";
+$sql = "SELECT COUNT(*) as total_orders FROM ordersUser";
 $result = $conn->query($sql);
 $data = array();
 

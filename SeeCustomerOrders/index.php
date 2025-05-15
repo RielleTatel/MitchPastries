@@ -106,13 +106,17 @@
   <body>
     <!-- Navigation Bar -->
     <section class="navigation-bar">
+
       <div class="top-navbar">
+            <!-- 
         <div class="nav-section">
           <p class="section-title">MAIN</p>
           <a href="../index.php">Home</a>
           <a href="../loading/index.html?target=../catalogue/index.php">Catalogue</a>
           <a href="../Checkout page/index.php">Cart</a>
         </div>
+
+        Navigation Bar -->
 
         <div class="nav-section">
           <p class="section-title">ADMIN PANEL</p>

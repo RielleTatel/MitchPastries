@@ -21,10 +21,10 @@ if ($result->num_rows > 0) {
 
         // Set the image path to use the uploaded image if it exists
         if (!empty($row["image"])) {
-            $row["image"] = "../menu/uploads/" . $row["image"];
+            $row["image"] = "../../menu/uploads/" . $row["image"];
         } else {
             // Fallback to a default image if no image is uploaded
-            $row["image"] = "../images/default-pastry.jpg";
+            $row["image"] = "../../images/default-pastry.jpg";
         }
 
         if (!isset($menu[$category])) {
