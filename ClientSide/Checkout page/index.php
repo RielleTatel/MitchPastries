@@ -132,7 +132,7 @@ session_start();
           </div>
     
           <div class="place-another-bttn">
-            <a href="index.html"><button>Place another Order</button></a>
+            <a href="../Catalogue/index.php"><button>Place another Order</button></a>
           </div>
         </div>
     
@@ -180,7 +180,6 @@ session_start();
         // Fetch and display cart items immediately
         updateCartDisplay();
         
-        // Set up auto-refresh every 2 seconds for real-time updates
         setInterval(updateCartDisplay, 2000);
 
         // Handle form submission

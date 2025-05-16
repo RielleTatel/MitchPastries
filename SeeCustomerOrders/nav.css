@@ -72,3 +72,14 @@ nav {
   align-items: center;
   gap: 20px;
 }
+
+.logout-btn {
+  color: #f72585 !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #f72585 !important;
+  color: white !important;
+}

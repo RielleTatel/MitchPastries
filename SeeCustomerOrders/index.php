@@ -115,7 +115,6 @@
           <a href="../loading/index.html?target=../catalogue/index.php">Catalogue</a>
           <a href="../Checkout page/index.php">Cart</a>
         </div>
-
         Navigation Bar -->
 
         <div class="nav-section">
@@ -123,6 +122,7 @@
           <a href="../loading/index.html?target=../dashboard/index.html">Dashboard</a>
           <a href="../loading/index.html?target=../menu/menu.html">Menu List</a>
           <a href="../SeeCustomerOrders/index.php">Orders</a>
+          <a href="../logout.php" class="logout-btn">Logout</a>
         </div>
       </div>
     </section>
@@ -177,7 +177,7 @@
       </div>
     </div>
 
-    <!-- Order Details Panel -->
+
     <div id="orderPanel" class="order-panel">
       <div class="order-panel-header">
         <h3 class="order-panel-title">Order Details</h3>

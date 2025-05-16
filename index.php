@@ -220,7 +220,7 @@ session_start();
             <p class="hero-subtext">Freshly baked, every day.</p>
           </div>
           <button class="button">
-            <a href="loading/index.php?target=catalogue/index.php">Order Now</a>
+            <a href="ClientSide/catalogue/index.php">Order Now</a>
           </button>
         </div>
       </div>

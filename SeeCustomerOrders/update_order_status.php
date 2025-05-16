@@ -2,7 +2,6 @@
 session_start();
 header('Content-Type: application/json');
 
-// Check if user is logged in and is an admin
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     error_log("Unauthorized access attempt");
     echo json_encode(['success' => false, 'error' => 'Unauthorized access']);
@@ -40,10 +39,8 @@ try {
     if ($status === 'Complete') {
         error_log("Processing Complete status for order: " . $order_id);
         
-        // Start transaction
         $conn->begin_transaction();
 
-        // Get the order data
         $stmt = $conn->prepare("SELECT * FROM ordersUser WHERE id = ?");
         $stmt->bind_param("i", $order_id);
         $stmt->execute();
@@ -89,14 +86,12 @@ try {
             throw new Exception('Failed to delete from ordersUser: ' . $stmt->error);
         }
 
-        // Commit transaction
         $conn->commit();
         error_log("Successfully completed order: " . $order_id);
         echo json_encode(['success' => true]);
     } else {
         error_log("Updating status to " . $status . " for order: " . $order_id);
         
-        // Just update the status
         $stmt = $conn->prepare("UPDATE ordersUser SET status = ? WHERE id = ?");
         $stmt->bind_param("si", $status, $order_id);
         
@@ -118,7 +113,7 @@ try {
     }
 } catch (Exception $e) {
     error_log("Error in update_order_status.php: " . $e->getMessage());
-    // Rollback transaction if it was started
+
     if (isset($conn)) {
         $conn->rollback();
     }

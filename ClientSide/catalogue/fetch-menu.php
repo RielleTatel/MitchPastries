@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = ""; // adjust if needed
+$password = ""; 
 $dbname = "user";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -19,11 +19,10 @@ if ($result->num_rows > 0) {
         // Normalize category
         $category = strtolower(trim($row["category"]));
 
-        // Set the image path to use the uploaded image if it exists
         if (!empty($row["image"])) {
             $row["image"] = "../../menu/uploads/" . $row["image"];
         } else {
-            // Fallback to a default image if no image is uploaded
+
             $row["image"] = "../../images/default-pastry.jpg";
         }
 

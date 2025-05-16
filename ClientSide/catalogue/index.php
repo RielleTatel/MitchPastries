@@ -4,12 +4,10 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Meta tags for character encoding and responsive viewport -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mitch Pastries Catalogue</title>
     
-    <!-- External CSS files for styling different sections -->
     <link rel="stylesheet" href="style/navigation-bar.css" />
     <link rel="stylesheet" href="style/background-section.css" />
     <link rel="stylesheet" href="style/welcome-section.css" />
@@ -19,7 +17,8 @@ session_start();
     <link rel="stylesheet" href="style/popular-items-section.css" />
     <link rel="stylesheet" href="style/all-items-sections.css" />
     <link rel="stylesheet" href="style/pop-up-modal.css">
-    <!-- Font Awesome for icons -->
+
+  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Base styles for the entire page -->
@@ -69,10 +68,8 @@ session_start();
         </div>
       </section>
 
-      <!-- Background section for visual appeal -->
       <section class="background-section"></section>
 
-      <!-- Welcome section with main heading and call-to-action -->
       <section class="welcome-section">
         <div class="welcome-text">
           <h1>Welcome to Mitch Pastries! 🍰</h1>
@@ -891,50 +888,4 @@ session_start();
 
   </body>
 </html>
-
-
-<!-- 
-
-addToCart Function Integration
-
-The addToCart function demonstrates a key PHP-JavaScript integration through AJAX (Asynchronous JavaScript and XML). 
-When a user clicks to add an item to their cart, this function:
-Creates a FormData object to package the product information
-
-Uses the Fetch API to make a POST request to 'add_to_cart.php'
-Sends product details (ID, name, price, quantity) to the PHP backend
-The PHP file (add_to_cart.php) then processes this data, likely storing it in a session or database
-The response from PHP is handled in the JavaScript, showing a success/error message to the user
-
-📦 1. addToCart(item, quantity) Function
-This function is a perfect example of JavaScript → PHP integration via AJAX (i.e. fetch()).
-Inside this function, you gather product data (like name, price, and quantity) and package it using a FormData object.
-You then use fetch('add_to_cart.php', { method: 'POST', body: formData }) to send this data to a PHP script.
-The add_to_cart.php file is expected to receive the $_POST data, process it (usually storing it in a database or session), and return a message — like "Item added to cart" — that gets handled and shown via JavaScript.
-Integration Summary: JS sends product data to add_to_cart.php, PHP processes it, and JS reacts to PHP's response (like showing an alert).
-
--->
-
-<!-- 
-
-addToCart Function Integration
-
-The addToCart function demonstrates a key PHP-JavaScript integration through AJAX (Asynchronous JavaScript and XML). When a user clicks to add an item to their cart, this function:
-Creates a FormData object to package the product information
-Uses the Fetch API to make a POST request to 'add_to_cart.php'
-Sends product details (ID, name, price, quantity) to the PHP backend
-The PHP file (add_to_cart.php) then processes this data, likely storing it in a session or database
-The response from PHP is handled in the JavaScript, showing a success/error message to the user
-
-
-🍽️ 2. fetch('fetch-menu.php') Call
-This happens in another JavaScript block that loads when the page is ready.
-
-The JavaScript uses fetch() to call fetch-menu.php, which is a PHP file responsible for pulling menu item data from a database (most likely using mysqli or PDO).
-That PHP script encodes the data as JSON using echo json_encode($data);.
-JavaScript receives this data and uses it to dynamically build HTML cards for the menu items — inserting images, names, descriptions, and prices.
-Integration Summary: JS fetches menu data from PHP, which queries the DB and returns JSON; JS then updates the HTML based on that data.
--->
-
-
 

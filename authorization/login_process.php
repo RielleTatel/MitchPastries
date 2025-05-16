@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 exit;
             } else {
                 $_SESSION['is_admin'] = false;
-                header('Location: ../index.php'); // or your user homepage
+                header('Location: ../index.php'); 
                 exit;
             }
         } else {
