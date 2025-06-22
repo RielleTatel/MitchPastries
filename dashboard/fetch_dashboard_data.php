@@ -21,6 +21,18 @@ if ($result->num_rows > 0) {
     $data['total_orders'] = $row['total_orders'];
 } else {
     $data['total_orders'] = 0;
+} 
+
+
+$sql = "SELECT COUNT(*) as total_users FROM users";
+$result = $conn->query($sql);
+$data['total_users'] = $result->fetch_assoc()['total_users']; 
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $data['total_users'] = $row['total_users'];
+} else {
+    $data['total_users'] = 0;
 }
 
 // Get total income from completed orders
@@ -52,30 +64,6 @@ if ($result->num_rows > 0) {
             'date' => $row['date'],
             'order_count' => $row['order_count'],
             'revenue' => $row['daily_revenue']
-        );
-    }
-}
-
-// Fetch top selling products
-$sql = "SELECT 
-            oi.product_name,
-            SUM(oi.quantity) as total_quantity,
-            SUM(oi.price * oi.quantity) as total_revenue
-        FROM order_items oi
-        JOIN Orders o ON oi.order_id = o.id
-        WHERE o.status = 'Completed'
-        GROUP BY oi.product_name
-        ORDER BY total_quantity DESC
-        LIMIT 5";
-$result = $conn->query($sql);
-
-$data['top_products'] = array();
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        $data['top_products'][] = array(
-            'product_name' => $row['product_name'],
-            'total_quantity' => $row['total_quantity'],
-            'total_revenue' => $row['total_revenue']
         );
     }
 }
