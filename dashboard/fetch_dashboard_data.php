@@ -23,10 +23,9 @@ if ($result->num_rows > 0) {
     $data['total_orders'] = 0;
 } 
 
-
-$sql = "SELECT COUNT(*) as total_users FROM users";
+// Count total users from users table 
+$sql = "SELECT COUNT(*) as total_users FROM registration";
 $result = $conn->query($sql);
-$data['total_users'] = $result->fetch_assoc()['total_users']; 
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();

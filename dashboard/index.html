@@ -88,6 +88,7 @@
           // Update stats
           document.getElementById('expected-income').textContent = '₱' + data.expected_income;
           document.getElementById('total-orders').textContent = data.total_orders;
+          document.getElementById('total-users').textContent = data.total_users; 
         } catch (error) {
           console.error('Error fetching dashboard data:', error);
         }
